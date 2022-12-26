@@ -1,0 +1,1724 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Object Orientated Programming</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f9198836-a114-4c69-9a96-2b6ae883d930" class="page sans"><header><h1 class="page-title">Object Orientated Programming</h1></header><div class="page-body"><p id="a24e1626-6481-482a-97d9-8199786e82e5" class="">The functions that can be done on an object are placed in the object itself.</p><p id="b75ec7de-eb30-425c-a9bc-53b60037f0f0" class="">So we just call the function that we require and when we require.</p><p id="164b2a40-428a-434d-a78a-d3d57cea574a" class="">How the object performs a function is not of any interest to us.</p><p id="f17241ba-29d0-40dc-9739-c09aee8393ae" class="">Everything in python is an object. This is unusual for the programming language. For example in the below code, a and b are defined as integer numbers but integers also have built-in methods and .__add__() is one of them.</p><pre id="c632d576-e214-4bdc-8561-730e9011b892" class="code"><code>&gt;&gt;&gt; a = 12
+&gt;&gt;&gt; b = 4
+&gt;&gt;&gt; print(a+b)
+16
+&gt;&gt;&gt; print(a.__add__(b))
+16
+&gt;&gt;&gt;</code></pre><h2 id="112a59cf-aa1c-44bb-9bd9-10f6f6d160fa" class="">What are classes?</h2><p id="3b7470d4-f214-4415-b69f-4494b86d75ba" class="">classes in OOP can be thought of as a template from which the objects can be created. The objects have the same properties but the values of the properties are different for different objects.</p><pre id="5240e83c-39ed-466a-90c0-b3cb89a09f46" class="code"><code>class kettle(object):
+
+    def __init__(self, make, price):
+        &quot;&quot;&quot;
+        __init__ is called a constructor in python. This constructor will define all the variables that will be used by the instance of the class and the methods 
+        associated with the class. Since these variables are common to all instnaces, the first argument to the constructor is &#x27;self&#x27;. 
+        The variables which are associated with the instance of the class are called attributes.
+        
+        &quot;&quot;&quot;
+        self.make = make
+        self.price = price
+        self.on = False
+
+# Let&#x27;s create some instances for the class above
+kennwood = kettle(&quot;keenwood&quot;, 8.99)
+print(kennwood.make)
+print(kennwood.price)
+
+# We can change the property of the object after it was assigned
+kennwood.price = 12.9
+
+# Another instance of the same class looks like this:
+hamilton = kettle(&quot;hamilton&quot;, 10)
+print(hamilton.make)
+print(hamilton.price)
+
+# we can specify the attributes of the objects in the string 
+print(&quot;Models: {0.make} = {0.price} and {1.make} = {1.price}&quot;.format(kennwood, hamilton))</code></pre><p id="55971195-0f10-4db4-9966-8cbcdd93e72e" class="">The output of the above code is given below</p><pre id="0194a9d6-fbf8-4347-9c6f-aedce01aaf3d" class="code"><code>keenwood
+8.99
+hamilton
+10
+Models: keenwood = 12.9 and hamilton = 10</code></pre><p id="e348ed28-1527-4567-914f-15357e9bf394" class="">In the code above we have a class called ‘kettle’ and it has properties ‘make’ and ‘price’. </p><p id="aef6430e-5b60-4933-828c-ef3d762285f6" class="">The class can be thought of as a blueprint for building a house. You can build number of houses from the same blueprint but you can only build houses and not automobiles. </p><h2 id="501cc12c-d384-48ce-96e3-9bdbe1681e01" class="">What  is a constructor?</h2><p id="59cc2eb1-ea84-4da7-92fd-4ae04084c180" class="">the constructor is called every time an instance of a class is created. In python it is defined by :__init__ method at the very start of the class.</p><h2 id="c242a375-6586-4893-9e46-ab7a70fd9df1" class="">What does ‘self’ mean?</h2><p id="5dcb12ab-4a78-4ab2-a15b-c0d40155787f" class="">the keyword &#x27;self&#x27; here refers to an instance of the class. That is why in the constructor or any other method in class, the first argument is always ‘self’</p><p id="4e00da13-a3da-48ea-8f53-27d14eab08fd" class=""><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong>Example for the method in the class is as shown below</strong></span></strong></span></strong></span></strong></span></strong></span></p><h2 id="2a13d20a-f666-4b06-9755-91db6ec3d4c0" class="">Using methods in class</h2><p id="01919321-b8ca-43b4-ae00-0976a442a643" class="">there are two ways in which we can use the methods that are defined in a class</p><p id="def1d654-c7b7-435a-94f6-f6df48691377" class="">OBJECT.MEHOD_NAME</p><p id="87f0562d-b161-4a73-b219-9de249010a84" class="">and</p><p id="f86abcf7-4a2f-4476-8284-45569afd35df" class="">CLASS_NAME.METHOD_NAME(OBJECT)</p><p id="6bf150ff-b932-4e42-bc1c-a512cb70ff90" class="">the example of this is shown below.</p><pre id="3df3ecba-bac3-43b2-b8f6-023e8eaa8b60" class="code"><code>class kettle(object):
+
+    def __init__(self, make, price):
+        &quot;&quot;&quot;
+        __init__ is called a constructor in python. This constructor will define all the variables that will be used by the instance of the class and the methods 
+        the constructor is called every time an instance of a class is created. 
+        associated with the class. Since these variables are common to all instnaces, the first argument to the constructor is &#x27;self&#x27;. 
+        the &#x27;self&#x27; here refrences an instnace of the class.
+        The variables which are associated with the instance of the class are called attributes.
+        
+        &quot;&quot;&quot;
+        self.make = make
+        self.price = price
+        self.on = False
+
+    def switch_on(self):
+            self.on = True
+
+# Let&#x27;s create some instances for the class above. This is called &#x27;instanciation&#x27;
+kennwood = kettle(&quot;keenwood&quot;, 8.99)
+print(kennwood.make)
+print(kennwood.price)
+
+# Another instance of the same class looks like this:
+hamilton = kettle(&quot;hamilton&quot;, 10)
+print(hamilton.make)
+print(hamilton.price)
+
+# Let&#x27;s use the method and change the object attribute for the hamilton object
+print(hamilton.on) # should print False
+hamilton.switch_on()# we do not need to pass the instance as a first parameter as because python does this automatically.
+print(hamilton.on) # should print True</code></pre><p id="8f069f55-73f6-41d6-af7e-41a27218d8e8" class="">The output for the above code is as shown below</p><pre id="b1455628-20fc-403d-a7dd-7046549c52a4" class="code"><code>keenwood
+8.99
+hamilton
+10
+False
+True</code></pre><p id="36adc1e5-1772-4e9d-8336-c51acfa40473" class="">
+</p><h2 id="6b4f4a37-9ab5-4311-80b3-22c721dc3934" class="">Creating attributes on the fly</h2><p id="085dd09a-0774-4f10-b40f-f04f6bd063e4" class="">In python, the variables come into existence when we assign a value to them. Same thing is true for  the attributes of an object. The attribute can be created anywhere for an object. Even outside of the class and need not be defined before.</p><pre id="df53ef94-6149-4658-b988-591f0db83273" class="code"><code>class kettle(object):
+
+    def __init__(self, make, price):
+        &quot;&quot;&quot;
+        __init__ is called a constructor in python. This constructor will define all the variables that will be used by the instance of the class and the methods 
+        the constructor is called every time an instance of a class is created. 
+        associated with the class. Since these variables are common to all instnaces, the first argument to the constructor is &#x27;self&#x27;. 
+        the &#x27;self&#x27; here refrences an instnace of the class.
+        The variables which are associated with the instance of the class are called attributes.
+        
+        &quot;&quot;&quot;
+        self.make = make
+        self.price = price
+        self.on = False
+
+    def switch_on(self):
+            self.on = True
+
+# instance of the class looks like this:
+hamilton = kettle(&quot;hamilton&quot;, 10)
+print(hamilton.make)
+print(hamilton.price)
+
+# we can create a attribute for an object anywhere in python.
+hamilton.power = 15
+print(&quot;attribute created outside for the hamilton object &#x27;hamilton.power&#x27;: &quot;, hamilton.power)</code></pre><p id="2338589c-baed-4076-b812-bf7f0f830eb9" class="">Output: </p><pre id="358720b1-17b8-4844-bde6-e38c2c481651" class="code"><code>hamilton
+10
+attribute created outside for the hamilton object &#x27;hamilton.power&#x27;:  15</code></pre><h2 id="d012410f-14e2-4125-8680-fab30e16303b" class="">What are data attributes and class attributes?</h2><p id="22f3e5ad-beff-4753-a5a5-350fe87bc0ec" class=""><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong>data attributes: </strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span> These are the properties of the instances of the class. They are defined in the class in :__init__ () method but they are associated with each instance separately. So they can take separate value according to the assignment in each instance. An example of these attributes is kettel.make and kettle.price</p><p id="9575dac2-4ffb-4d66-852b-220d8a127e8e" class=""><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong><span style="border-bottom:0.05em solid"><strong>class attributes: </strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span></strong></span> They are defined for all instances of the class and the value of the class attribute does not change with each instance. It will remain the same for all instances.</p><p id="49d6eaa0-6be5-4fdc-be7b-d1b27eb6aab2" class="">In the following example the ‘power’ is a class attribute. </p><pre id="bdfa3dba-4130-4005-8c7d-495cbab78f17" class="code"><code>class kettle(object):
+    # Defining the energy source for the electric kettle as a class attribute as it will not change with the instance
+    # this will be the class attribute
+    power_source = &#x27;electricity&#x27;
+
+    # The following are the instance/data attributes
+    def __init__(self, make, price):
+        &quot;&quot;&quot;
+        __init__ is called a constructor in python. This constructor will define all the variables that will be used by the instance of the class and the methods 
+        the constructor is called every time an instance of a class is created. 
+        associated with the class. Since these variables are common to all instnaces, the first argument to the constructor is &#x27;self&#x27;. 
+        the &#x27;self&#x27; here refrences an instnace of the class.
+        The variables which are associated with the instance of the class are called attributes.
+        
+        &quot;&quot;&quot;
+        self.make = make
+        self.price = price
+        self.on = False
+
+    def switch_on(self):
+            self.on = True
+
+# Let&#x27;s create some instances for the class above. This is called &#x27;instanciation&#x27;
+kennwood = kettle(&quot;keenwood&quot;, 8.99)
+print(&#x27;make &#x27;, kennwood.make)
+print(&#x27;price in euros &#x27;, kennwood.price)
+print(&#x27;power source &#x27;, kennwood.power_source)
+
+# We can change the property of the object after it was assigned
+kennwood.price = 12.9
+
+# Another instance of the same class looks like this:
+hamilton = kettle(&quot;hamilton&quot;, 10)
+print(&#x27;make &#x27;, hamilton.make)
+print(&#x27;price in euros &#x27;, hamilton.price)
+print(&#x27;power source &#x27;, hamilton.power_source)</code></pre><p id="22685e27-c6dd-4971-b74a-66126b890233" class="">Output: </p><pre id="388fde77-c1cb-45fa-bb11-56f65d6c0a11" class="code"><code>make  keenwood
+price in euros  8.99
+power source  electricity
+make  hamilton
+price in euros  10
+power source  electricity</code></pre><p id="58a630bc-0ef8-486c-ac6c-8424c1e755ea" class="">It is possible to change the value of the class attribute for one instance only. This means that for other instances, the value of the attribute will remain the same.</p><pre id="3297ecf6-5818-477c-b839-11309187aaeb" class="code"><code>class kettle(object):
+    # Defining the energy source for the electric kettle as a class attribute as it will not change with the instance
+    # this will be the class attribute
+    power_source = &#x27;electricity&#x27;
+
+    # The following are the instance/data attributes
+    def __init__(self, make, price):
+        &quot;&quot;&quot;
+        __init__ is called a constructor in python. This constructor will define all the variables that will be used by the instance of the class and the methods 
+        the constructor is called every time an instance of a class is created. 
+        associated with the class. Since these variables are common to all instnaces, the first argument to the constructor is &#x27;self&#x27;. 
+        the &#x27;self&#x27; here refrences an instnace of the class.
+        The variables which are associated with the instance of the class are called attributes.
+        
+        &quot;&quot;&quot;
+        self.make = make
+        self.price = price
+        self.on = False
+
+    def switch_on(self):
+            self.on = True
+
+# Let&#x27;s create some instances for the class above. This is called &#x27;instanciation&#x27;
+kennwood = kettle(&quot;keenwood&quot;, 8.99)
+print(&#x27;make &#x27;, kennwood.make)
+print(&#x27;price in euros &#x27;, kennwood.price)
+kennwood.power_source = &#x27;gas&#x27;
+print(&#x27;power source &#x27;, kennwood.power_source)
+
+# We can change the property of the object after it was assigned
+kennwood.price = 12.9
+
+# Another instance of the same class looks like this:
+hamilton = kettle(&quot;hamilton&quot;, 10)
+print(&#x27;make &#x27;, hamilton.make)
+print(&#x27;price in euros &#x27;, hamilton.price)
+print(&#x27;power source &#x27;, hamilton.power_source)</code></pre><p id="83de9c90-8c81-45c8-a16d-aed7de43fa22" class="">Output</p><pre id="5d7cf59e-0ff3-4d00-b892-9e84317c1c9f" class="code"><code>make  keenwood
+price in euros  8.99
+power source  gas
+make  hamilton
+price in euros  10
+power source  electricity</code></pre><h2 id="4a717da8-3045-4db7-aff5-32d71004971a" class="">What does Encapsulation mean?</h2><p id="fda95112-fe90-47e7-b5ef-963156e27f25" class="">The basic idea is that in OOP, the objects contain the data. And methods that operate on that data do not expose the implementation to the outside world.</p><p id="6e953d0b-09f2-46a0-b16d-216d7ddfb201" class="">The best example of the encapsulation are the methods that we use with the packages like numpy, openCV. We do not need to know what is going on in the background. We just need to know the parameters that we pass to the methods.</p><p id="d6140cd3-ce24-4fe7-86e4-655e0d7dc27d" class="">The following code shows a  simple example of the class and some methods in it. As encapsulation states, we do not need to know what is going on in each method. We only care about the parameters to pass to  the methods as an arguments.</p><pre id="8830ed21-c0c2-4cb2-9767-c777ad7c4bdb" class="code"><code>class Account:
+    &quot;&quot;&quot;
+    Simple class with the account information
+    
+    &quot;&quot;&quot;
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+        print(&quot;account created for: &quot;, self.name)
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self.balance += amount
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+    
+    def withdraw(self, amount):
+        if amount &gt; 0:
+            self.balance -= amount
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+
+    def check_balance(self):
+        print(&quot;balance in the account of {} is {} &quot;.format(self.name, self.balance))
+
+
+&quot;&quot;&quot; Create  an account for your self and deposite 10000 in it&quot;&quot;&quot;
+
+if __name__ == &quot;__main__&quot;:
+    
+    shubham = Account(&#x27;shubnham&#x27;, 0)
+    shubham.check_balance()
+    shubham.deposit(10000)
+    shubham.check_balance()</code></pre><p id="104558ae-22e6-4a71-b10a-0e7b19937252" class="">Output</p><pre id="4f329697-9d3d-4d2e-ae57-d9caefeb438b" class="code"><code>account created for:  shubnham
+balance in the account of shubnham is 0
+balance in the account of shubnham is 10000</code></pre><p id="6c35e56e-193d-4d51-b75d-022b9ff13551" class="">Another way to check the balance is to add the check_balance() method to deposite and withdraw methods. This shows that we can call a method before it is actually written in the code.</p><pre id="10d16943-c774-403a-ae71-ec6e4b737cdd" class="code"><code>class Account:
+    &quot;&quot;&quot;
+    Simple class with the account information
+    
+    &quot;&quot;&quot;
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+        print(&quot;account created for: &quot;, self.name)
+        self.check_balance()
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self.balance += amount
+            self.check_balance()
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+    
+    def withdraw(self, amount):
+        if amount &gt; 0:
+            self.balance -= amount
+            self.check_balance()
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+
+    def check_balance(self):
+        print(&quot;balance in the account of {} is {} &quot;.format(self.name, self.balance))
+
+
+&quot;&quot;&quot; Create  an account for your self and deposite 10000 in it&quot;&quot;&quot;
+
+if __name__ == &quot;__main__&quot;:
+
+    shubham = Account(&#x27;shubnham&#x27;, 0)
+    shubham.deposit(10000)</code></pre><p id="f9487eb3-d000-4708-8b81-cbc961fea7e1" class="">Output:</p><pre id="cfcf2573-3e4f-420b-ba1b-7f9dddbf2544" class="code"><code>account created for:  shubnham
+balance in the account of shubnham is 0
+balance in the account of shubnham is 10000</code></pre><p id="a344450c-ec2d-49f6-9486-4ae84b56cedb" class="">An important thing to remember here is that we can change the signature of a method of a class without changing the implementation of the method. </p><p id="a84550c8-7391-473d-bf50-3a1dfb385928" class="">A signature of a method (or a function) is the name, parameter and the return value of the method/ function.</p><h2 id="346c90c9-34c8-45a8-ae83-fc678fb2699e" class="">What are static methods in a class?</h2><p id="5967e465-351f-4349-939f-3c50614db180" class="">A static method is similar to a class variable which will be shared by all attributes of the class without explicitly stating them with the attribute.</p><p id="7c776a88-9e4b-44fa-b0dd-c821c35881d7" class="">The way to define the static method is with a function wrapper @staticmethod </p><p id="c6388953-3e0c-4ada-a371-1ab8bfd5e114" class="">It is also important to note that the name of the static method will always start with the underscore. </p><p id="0f9fd6b3-f0f6-4cc9-8358-2585bf7e74da" class="">The following code illustrates the static method used for the class Account</p><pre id="2afaae79-1672-42ef-8e80-c35e51ff3351" class="code"><code>import datetime
+import pytz
+
+
+class Account:
+    &quot;&quot;&quot;
+    Simple class with the account information
+    
+    &quot;&quot;&quot;
+    # if we are going to add the time for printing the deposite and withdraw, it does not make scence to print the datetime command in the append() again and again.
+    # so we can make a staticmethod here which will return the datetime and call that mehod when we want to print or add the datetime at any place.
+    @staticmethod
+    def _current_time():
+        &quot;&quot;&quot;This is a staticmethod which is indicated by the underscore in its name.
+        This also means that this method is by default accessible to all instances of the class. Hence we do not need to invoke &#x27;self&#x27; as first argument for this method.
+        &quot;&quot;&quot;
+        utc_time = datetime.datetime.utcnow()
+        return pytz.utc.localize(utc_time)
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+        print(&quot;account created for: &quot;, self.name)
+        self.check_balance()
+        self.trascation_list = []
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self.balance += amount
+            self.check_balance()
+            self.trascation_list.append((Account._current_time(),amount)) # This is an example where the python will unpack the tuple and assign the value to
+            # date and amount in one .append() statement. 
+            
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+    
+    def withdraw(self, amount):
+        if amount &gt; 0:
+            self.balance -= amount
+            self.check_balance()
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+
+    def check_balance(self):
+        print(&quot;balance in the account of {} is {} &quot;.format(self.name, self.balance))
+
+    def show_transaction(self):
+        for date, amount in self.trascation_list:
+            if amount &gt; 0:
+                tran_type = &quot;deposited&quot;
+            else:
+                tran_type = &quot;withdrawn&quot;
+                amount *= -1
+            print(&quot;{:6} {} on {} local time was {} &quot;.format(amount, tran_type, date, date.astimezone()) ) 
+
+
+&quot;&quot;&quot; Create  an account for your self and deposite 10000 in it&quot;&quot;&quot;
+
+if __name__ == &quot;__main__&quot;:
+
+    shubham = Account(&#x27;shubnham&#x27;, 0)
+    shubham.deposit(10000)
+    shubham.withdraw(30000)
+    shubham.show_transaction()</code></pre><p id="ff57f304-1732-4081-9242-9f9585031a14" class="">Output </p><pre id="b563e7c5-4124-4b74-a1c0-397fd90af874" class="code"><code>account created for:  shubnham
+balance in the account of shubnham is 0
+balance in the account of shubnham is 10000
+balance in the account of shubnham is -20000
+ 10000 deposited on 2022-12-14 15:08:12.765580+00:00 local time was 2022-12-14 16:08:12.765580+01:00</code></pre><p id="6eeb76c5-d694-49f4-b580-e13238573222" class="">Important thing to note here is that python does not have any concept of private or protected variables or methods. Hence putting underscore before staticmethod name is the python way of telling the user that this is a private method that is not to be used outside of this class.</p><p id="e6ca2ec6-b233-4c10-892d-904cf913831c" class="">Although the use of this method is possible outside of the Account class, there is no physical mechanism stopping the user from doing so. You may get a warning from the IDE that you are using, but that is about it.</p><p id="2a2d201b-49b7-47e5-b638-f9bcc3e1dc7c" class="">Although the use of this method is possible outside of the Account class, there is no physical mechanism stopping the user from doing so. You may get a warning from the IDE that you are using, but that is about it.</p><h2 id="44b962e1-c224-4700-b7fd-305cc3d1faac" class="">What is name mangeling in pyhton?</h2><p id="03a5e57b-711b-4d90-afd0-35f8bcfa776c" class="">As we have seen earlier an underscore before the name of the variable or the method means that they are private and not to be used outside of that class. </p><p id="3ec0f283-b5f7-426b-80a3-722c4fc23f0d" class="">But if we start the name of the method with two underscores, for example <strong>VarName and put it in the .</strong>__init__ constructor, then python knows that the variable is private and even if we try to change the value of this variable outside of the class, we cannot do it (we can do it, if we really want to but not easily)</p><p id="d172dd39-1229-4602-98e5-9b612b2b3f1b" class="">If an attempt is made to change the value of the attribute whose name starts with two underscores outside the class, then pyhton will create a new new instance attribute with _<em>ClassName</em>_AttributeName and assign it the value of the old attribute and it will also create a different new attribute with __AttributeName and assign it the changed value.  The example of this is as shown in the code below. </p><pre id="653f9937-ea66-48fc-bea7-6b021a305770" class="code"><code>import datetime
+import pytz
+
+class Account:
+    &quot;&quot;&quot;
+    Simple class with the account information
+    
+    &quot;&quot;&quot;
+    # if we are going to add the time for printing the deposite and withdraw, it does not make scence to print the datetime command in the append() again and again.
+    # so we can make a staticmethod here which will return the datetime and call that mehod when we want to print or add the datetime at any place.
+    @staticmethod
+    def _current_time():
+        &quot;&quot;&quot;This is a staticmethod which is indicated by the underscore in its _name.
+        This also means that this method is by default accessible to all instances of the class. Hence we do not need to invoke &#x27;self&#x27; as first argument for this method.
+        &quot;&quot;&quot;
+        utc_time = datetime.datetime.utcnow()
+        return pytz.utc.localize(utc_time)
+
+    def __init__(self, _name, __balance):
+        self._name = _name
+        self.__balance = __balance
+        print(&quot;account created for: &quot;, self._name)
+        if __balance &gt; 0:
+            print(f&quot;the initial __balance in the account of {_name} is {__balance}&quot;)       
+        self.trascation_list = []
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self.__balance += amount
+            self.check_balance()
+            self.trascation_list.append((Account._current_time(),amount)) # This is an example where the python will unpack the tuple and assign the value to
+            # date and amount in one .append() statement. 
+            
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+    
+    def withdraw(self, amount):
+        if amount &gt; 0:
+            self.__balance -= amount # Take care of the sign here. Since the amount is a negative number, we need to add it to show correct __balance.
+            self.check_balance()
+            self.trascation_list.append((Account._current_time(),-amount))
+        else:
+            raise ValueError(&quot;Check the amount entered&quot;)
+
+    def check_balance(self):
+        print(&quot;__balance in the account of {} is {} &quot;.format(self._name, self.__balance))
+
+    def show_transaction(self):
+        for date, amount in self.trascation_list:
+            if amount &gt; 0:
+                tran_type = &quot;deposited&quot;
+            else:
+                tran_type = &quot;withdrawn&quot;
+                amount *= -1
+            print(&quot;{:6} {} on {} local time was {} &quot;.format(amount, tran_type, date, date.astimezone()) ) 
+
+
+&quot;&quot;&quot; Create  an account for your self and deposite 10000 in it&quot;&quot;&quot;
+
+if __name__ == &quot;__main__&quot;:
+
+    shubham = Account(&#x27;shubnham&#x27;, 0)
+    shubham.deposit(10000)
+    shubham.withdraw(1000)
+    shubham.show_transaction()
+
+    # What happens when we take an account with some initial __balance
+    sanchit = Account(&#x27;sanchit&#x27;,800)
+    sanchit.deposit(100)
+    sanchit.__balance = 200
+    sanchit.withdraw(200)
+    sanchit.show_transaction()
+    print(sanchit.__dict__)</code></pre><p id="02a734e2-edb3-4658-bec0-a4a469e4c3f3" class="">Output</p><pre id="f431da18-d9fa-4628-b627-a90dfe166b6b" class="code"><code>account created for:  shubnham
+__balance in the account of shubnham is 10000
+__balance in the account of shubnham is 9000
+ 10000 deposited on 2022-12-14 16:12:53.627260+00:00 local time was 2022-12-14 17:12:53.627260+01:00
+  1000 withdrawn on 2022-12-14 16:12:53.627260+00:00 local time was 2022-12-14 17:12:53.627260+01:00
+account created for:  sanchit
+the initial __balance in the account of sanchit is 800
+__balance in the account of sanchit is 900
+__balance in the account of sanchit is 700
+   100 deposited on 2022-12-14 16:12:53.631232+00:00 local time was 2022-12-14 17:12:53.631232+01:00
+   200 withdrawn on 2022-12-14 16:12:53.631232+00:00 local time was 2022-12-14 17:12:53.631232+01:00
+{&#x27;_name&#x27;: &#x27;sanchit&#x27;, &#x27;_Account__balance&#x27;: 700, &#x27;trascation_list&#x27;: [(datetime.datetime(2022, 12, 14, 16, 12, 53, 631232, tzinfo=&lt;UTC&gt;), 100), (datetime.datetime(2022, 12, 14, 16, 12, 53, 631232, tzinfo=&lt;UTC&gt;), -200)], &#x27;__balance&#x27;: 200}</code></pre><p id="41662873-ca75-443e-b3a2-3650d889fb95" class="">Now take a look at the sanchit.__dict__  . Here we try to modify the sanchit.__balance outside of the class. But since the name of the variable starts with double underscores, python automatically created a new attribute _<em>Account</em>__balance and assigned it the value of __balance, at the same time it also createrd a new attribute __balance for the instance sanchit and assigned it the value changed outside the class.</p><p id="c65effb9-bb7a-4c1e-9a84-672e2ec775e8" class=""><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>this is called name mangeling in python</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p><h2 id="3939544e-9692-4875-b20a-77fdb68941f0" class="">What is a docstring in python class?</h2><p id="dc8258d4-99f4-4c81-aa6e-ce50f07707e1" class="">Docstring is just like the description of a class and methods. The rules for writing the docstring are similar for the function, class and methods. The detailed rules can be found in PEP 8 documentation. The link to the documentation is given below.</p><figure id="25cce623-756d-4cf1-889e-ba8fc89f1c21"><a href="https://peps.python.org/pep-0257/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">PEP 257 - Docstring Conventions</div><div class="bookmark-description">A docstring is a string literal that occurs as the first statement in a module, function, class, or method definition. Such a docstring becomes the special attribute of that object. All modules should normally have docstrings, and all functions and classes exported by a module should also have docstrings.</div></div><div class="bookmark-href"><img src="https://peps.python.org/_static/py.png" class="icon bookmark-icon"/>https://peps.python.org/pep-0257/</div></div></a></figure><p id="7e0b1031-5ced-49db-a55e-da044fd2f67b" class="">writing a good docstring is important because it can be used by the help function to provide the information about the class.</p><pre id="94346375-b4aa-46b8-8e63-aadae050b14a" class="code"><code>class Song:
+    &quot;&quot;&quot;Class to represent the songs 
+    
+    Attributes:
+        title (str): The title of the songs
+        artist (str): The artist of the songs
+        duration (int): The duration of the songs in seconds. May be zero.
+    &quot;&quot;&quot;
+    def __init__(self, title, artist, duration=0):
+        &quot;&quot;&quot;Song init method
+        
+        Args:
+            title (str): The title of the songs
+            artist (str): The artist of the songs
+            duration (int): The duration of the songs in seconds. 
+            duration will default to 0 seconds if it is not specified.
+            
+        &quot;&quot;&quot;
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
+
+if __name__ == &#x27;__main__&#x27;:
+    # docstring can be used by the help() function to provide the information about the calss.
+    help(Song)</code></pre><p id="bca13738-757d-402b-a275-08d785213670" class="">Output:</p><pre id="b3a7e561-b324-484b-a1d2-fda76b6403f7" class="code"><code>Help on class Song in module __main__:
+
+class Song(builtins.object)
+ |  Song(title, artist, duration=0)
+ |
+ |  Class to represent the songs
+ |
+ |  Attributes:
+ |      title (str): The title of the songs
+ |      artist (str): The artist of the songs
+ |      duration (int): The duration of the songs in seconds. May be zero.
+-- More  --</code></pre><p id="963e835a-538a-4c86-9f3e-8cc9d37dca8e" class=""><em><span style="border-bottom:0.05em solid"><strong>same thing for the Song.__init__ method</strong></span></em></p><pre id="bf7bafcc-1beb-479f-bdaa-e4493a590d8d" class="code"><code>class Song:
+    &quot;&quot;&quot;Class to represent the songs 
+    
+    Attributes:
+        title (str): The title of the songs
+        artist (str): The artist of the songs
+        duration (int): The duration of the songs in seconds. May be zero.
+    &quot;&quot;&quot;
+    def __init__(self, title, artist, duration=0):
+        &quot;&quot;&quot;Song init method
+        
+        Args:
+            title (str): The title of the songs
+            artist (str): The artist of the songs
+            duration (int): The duration of the songs in seconds. 
+            duration will default to 0 seconds if it is not specified.
+            
+        &quot;&quot;&quot;
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
+
+if __name__ == &#x27;__main__&#x27;:
+    # docstring can be used by the help() function to provide the information about the calss.
+    help(Song)
+    help(Song.__init__)</code></pre><p id="1be9fcca-1b32-4e37-a5cd-75541b5332dd" class="">Output:</p><pre id="ea5bb32b-2027-44e7-b547-19319068db0d" class="code"><code>class Song(builtins.object)
+ |  Song(title, artist, duration=0)
+ |
+ |  Class to represent the songs
+ |
+ |  Attributes: |      title (str): The title of the songs
+ |      artist (str): The artist of the songs
+ |      duration (int): The duration of the songs in seconds. May be zero.
+ |
+ |  Methods defined here:
+ |
+ |  __init__(self, title, artist, duration=0)
+ |      Song init method
+ |
+ |      Args:
+ |          title (str): The title of the songs
+ |          artist (str): The artist of the songs
+ |          duration (int): The duration of the songs in seconds.
+ |          duration will default to 0 seconds if it is not specified.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+Help on function __init__ in module __main__:
+
+__init__(self, title, artist, duration=0)
+    Song init method
+
+    Args:
+        title (str): The title of the songs
+        artist (str): The artist of the songs
+        duration (int): The duration of the songs in seconds.
+        duration will default to 0 seconds if it is not specified.</code></pre><p id="2bed4d29-c4b9-45ae-bd6b-dbf156fb443a" class="">Functions and classes in python are also objects. Hence they also have methods of their own.</p><h2 id="034a72a4-8cb6-4bab-88ae-f987ccecfb6f" class="">What is encapsulation in the OOP?</h2><p id="4400e734-c753-4f24-a827-8a5dfb716850" class="">In simple terms in encapsulation, the data and the code is wrapped together to keep them from getting modified by accident.</p><p id="9a3fb19c-3b02-47f5-b648-02e07020c55b" class="">The following code is an example of a code that happens to use the object oriented techniques but it is not object oriented in true scence.</p><p id="475c97af-27d4-4275-93ec-d2fc25edbb6a" class="">We will make it so by using the encapsulation.</p><pre id="240ec1cd-9524-4c58-a273-e79160246291" class="code"><code>class Song:
+    &quot;&quot;&quot;Class to represent the songs 
+    
+    Attributes:
+        title (str): The title of the songs
+        artist (str): The artist of the songs
+        duration (int): The duration of the songs in seconds. May be zero.
+    &quot;&quot;&quot;
+    def __init__(self, title, artist, duration=0):
+        &quot;&quot;&quot;Song init method
+        
+        Args:
+            title (str): The title of the songs
+            artist (str): The artist of the songs
+            duration (int): The duration of the songs in seconds. 
+            duration will default to 0 seconds if it is not specified.
+            
+        &quot;&quot;&quot;
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
+        
+class Album:
+    &quot;&quot;&quot; Class to represent an album, using its tracklist
+
+    Attributes:
+    name (str): The name of the album.
+    year (int): The year in which the album was released.
+    artist (str): The artist responsible for creating the album.
+    If the artist is not specified the album was created by various artist.
+    
+    Methods:
+    addSong: used to add new songs in album.
+    
+    &quot;&quot;&quot;
+    def __init__(self, name, year, artist=None):
+        self.name = name
+        self.year = year
+        self.artist = artist
+        if self.artist is None:
+            self.artist = &quot;Various Artist&quot;
+        else:
+            self.artist = artist
+
+        self.tracks = []
+
+    def addSong(self, song, position=None):
+        &quot;&quot;&quot;Adds the song to the tracklist.
+        
+        Arguments:
+        song (Song): The song to be added to the tracklist.
+        position (int, optional): The song will be added to the tracklist at the specified position and if the position
+        is None then the song will be added at the end of the tracklist.
+        
+        &quot;&quot;&quot;
+        if position is None:
+            self.tracks.append(song)
+        else:
+            self.tracks.insert(position, song)
+
+
+class Artist:
+    &quot;&quot;&quot;this is a basic class to store the artist details and attributes.
+
+    Attributes:
+        name(str): The name of the artist
+        albums(list[Albums]):  A list of albums in the artist&#x27;s collections, it is
+        not extensive list of the artist&#x27;s published albums.
+
+    Methods:
+        add_album: Use to add a new album to the artist&#x27;s album list
+
+    &quot;&quot;&quot;
+    def __init__(self, name):
+        self.name = name
+        self.albums = []
+
+    def add_album(self, album):
+        &quot;&quot;&quot;Add a new album to the list.
+
+        Args:
+            album(Album): album object to the list album.
+            if the album is already present, make sure that it is not added again.
+            &quot;&quot;&quot;
+        if album in self.albums:
+            print(&quot; The album is already present in the albums list.&quot;)
+        else:
+            self.albums.append(album)
+
+# Write a function outside the class to read the text files in from the file
+
+
+def load_data():
+    new_artist = None
+    new_album = None
+    artist_list = []
+
+    with open(&quot;albums.txt&quot;, &quot;r&quot;) as albums:
+        for line in albums:
+            artist_field, album_field, year_field, song_field = tuple(line.strip(&#x27;\n&#x27;).split(&#x27;\t&#x27;))
+            year_field = int(year_field)
+						# Uncomment the following line to see if the code so far runs properly or notw
+            #print(&quot;{}: {}: {}: {}&quot;.format(artist_field, album_field, year_field, song_field))
+            if new_artist is None:
+                 new_artist = Artist(artist_field)
+            elif new_artist.name != artist_field: 
+                # we have read details for a new artist
+                # store current album in the current artist collection and create new artist object
+                new_artist.add_album(new_album)
+                artist_list.append(new_artist)
+                new_artist=Artist(artist_field)
+
+            # we will do the similar thing that we did above to the new_album.
+            if new_album is None:
+                new_album = Album(album_field, year_field, new_artist)
+            elif new_album.name != album_field:
+                # we just read a new album for the current artist. 
+                # store the current album in the artist collection and create a new album object.
+                new_artist.add_album(new_album)
+                new_album = Album(album_field, year_field, new_artist)
+            # create a new song object and add it to the current album&#x27;s collection.
+            new_song = Song(song_field, new_artist)
+            new_album.addSong(new_song)
+
+        # After reading the last line in the text file, we will have an artist and album that haven&#x27;t been stored - process them now
+        if new_artist is not None:
+            if new_album is not None:
+                new_artist.add_album(new_album)
+            artist_list.append(new_artist)
+    return artist_list
+
+
+# The above code will collect the data from the file. And next task will be as the songs are read, each song will be added to the songs object and then it will be added to the album.
+# When the current album is already in the albums list, the new song will be added to the artist list and then it will be added to the next.
+
+
+
+
+if __name__ == &#x27;__main__&#x27;:
+    artist = load_data()
+    print(&quot;there are {} artist&quot;.format(len(artist)))</code></pre><p id="46d43e81-3a96-4d69-8e66-aaeeb1c340c0" class="">In the above example, the class Artist knows about the songs and albums. So technically, it should be handling all the data. So now the challenge is to crete a function so that it will deligate the data to the correct class or method of the class.</p><p id="86d437da-eb5d-40d1-ad51-b7d40ec6629e" class="">This is called encapsulation</p><p id="93a4afa9-c263-4564-8c33-bf7fe42668a3" class="">The whole point of object orientated programming is that you should know what do you want and you shold not worry about how is it done. You should simply be able to get it done by using some means.</p><p id="c9aaf913-d389-4572-9535-34a81ff86460" class=""> </p><pre id="f055eb34-c5c3-4fa5-b60b-25215d37625f" class="code"><code></code></pre><h2 id="41869b56-2da2-4c4d-8816-aa4902226af7" class="">what are getters and setters in pyhton?</h2><p id="2d486e02-2714-4d76-be37-75520ae469e2" class="">In other programming languages, once you decide the type of the variable in a program, they are set for that time. Meaning, if a variable is private or public and after some time we decide to change the type of the variable to protected, this can be done using the getters and setters. </p><p id="d24d4e88-06aa-42e9-be63-3e15a1102582" class="">In python there is no such rule regarding the variable type change. That is why in python, the getters ans setters are not that frequently used. Although, if we use the getters and setters in python, the code that is using the class is not affected at all. That is not the case with other programming languages such as Java or C++. </p><p id="86cc9ee9-13d1-4c33-9f69-ec5c25bca506" class="">The very basic definition of the getters and setters is that it is a method using which you will either get a value of the attribute or set a value of the attribute. </p><p id="56eef0c1-5406-4f9e-813b-ad0672994288" class=""><strong><strong><strong>It is recommended in python to never to use the getters ans setters.</strong></strong></strong></p><h3 id="81c05605-1482-467d-a42a-4b1efdda1fee" class="">Getters: </h3><p id="2c042ce0-a759-4e2b-8883-b33326c7dde5" class="">A method that is used to get the value of the data attribute.</p><h3 id="a2bcf722-f5c6-4220-8ad5-1972e789ee37" class="">Setter: </h3><p id="bf1243ef-88e8-4b95-a2f2-e4751ecf87d4" class="">A setter is a method that is used to set the value of an attribute. </p><p id="0927008d-1ee3-49e8-8813-ad92c63cdde2" class="">Follow the code in the folder. The code cannot be pasted here because it uses classes that are defined in more than one file.</p><p id="07706509-a5ac-42fe-85d7-592bbe9c0d8b" class="">Just the thing to remember is that do not name the property in the setter same as the attribute that you set for the data. This will create an error with pyhton.</p><p id="4d8a47db-8185-4d8b-a068-a53ce03f9bcd" class="">If you just provide a getter and not a setter, the property is going to be read only. Sometimes this is useful. And if you provide only setter and no getter, the property is going to be write only. This can be useful if the application is like that</p><p id="ef5726c9-6a5e-439a-ab29-b3cbd135e583" class="">The only real application of the getters and setters is to hide the attributes of the class (they are not really hidden). But using the getters and setters will prevent the user accessing the attributes directly (Let’s hope so).</p><p id="0c1b3d9c-9602-4375-8995-7c6879b8b6c1" class="">For more information regarding the getter and setter in easy words, read the following documentation</p><figure id="3830ebb5-83f8-41c5-b25b-ef004c24d2af"><a href="https://docs.python.org/3.7/library/functions.html#property" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Built-in Functions</div><div class="bookmark-description">The Python interpreter has a number of functions and types built into it that are always available. They are listed here in alphabetical order. Return the absolute value of a number. The argument may be an integer, a floating point number, or an object implementing .</div></div><div class="bookmark-href"><img src="https://docs.python.org/favicon.ico" class="icon bookmark-icon"/>https://docs.python.org/3.7/library/functions.html#property</div></div><img src="https://docs.python.org/3/_static/og-image.png" class="bookmark-image"/></a></figure><h2 id="8429934f-c785-4175-b893-ec072a715f78" class="">What is Inheritance in Python ?</h2><p id="ab0f6c58-f8cb-4226-8d8d-d051afd8331e" class="">The basic idea is that a class can access some attributes and methods from the superclass. On top of inherited methods and attributes, the sub class can also have some methods and attributes of its own.</p><p id="95916c05-3be5-4242-8369-5af6a262d83d" class="">Class can have one or more than one superclass. In python, another advantage is that you can have superclasses that are not hierarchical to the subclass. We can think of these super classes are being in parallel to the sub-classes. Although this should be avoided. This can be a very powerful tool but not very common or comfortable.</p><p id="bad42c1f-f9a0-4058-92c4-8a25ae571b8c" class="">In python 3 all classes will inherit directly from a default class called object. So, even though we do not have to specify this inheritance, this is actually happening. This is also shown in the code below. The way the two classes are written are different. But the output will be exactly identical</p><pre id="6e5df79a-da2a-42c6-bed2-8f59897188eb" class="code"><code># Without specifying inheritance
+class Enemy:
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+
+def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)</code></pre><pre id="c37de7a0-30b6-4abc-b3a9-899587a7a3e2" class="code"><code># Specifying class with inheritance
+class Enemy(object):
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+
+def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)</code></pre><p id="b5840333-6e5f-49d1-8d28-ce40b88d5063" class="">This is only possible for python 3.x</p><p id="3681482b-8bf3-45e5-9f46-c297395c6358" class="">we will first see what happens if we do not use any init mehod to specify the attribute for  a class that inherits from the main class</p><pre id="2b18a2d5-cbef-4297-bb91-80ec8926c9fc" class="code"><code># The troll class inherited from the enemy class
+class Troll(Enemy):
+    pass # this command does not do anything. It will just stop the python from giving error.</code></pre><p id="2481f82e-0935-49c7-aa88-c3cdbff753af" class="">following code is saved and run in a different python file</p><pre id="390dba19-6bc1-45b2-b4c0-1e48d0c9d8b8" class="code"><code>from enemy import Enemy, Troll
+
+ugly_troll = Troll()
+print(&quot;Ugly troll -{}&quot;.format(ugly_troll))</code></pre><p id="ca5855ad-98b1-41bb-9fbc-a972eea874d8" class="">Output</p><pre id="2fac9774-bddf-4fb3-8f3e-69fc7ff157e2" class="code"><code>Ugly troll -Name: Enemy, lives: 1, Hit Points: 0</code></pre><p id="bc0ce3dc-f8de-4507-9981-a9c10ea6d98d" class="">the name is still the ‘Enemy’ because we never changed it using init and all the attributes that are default for the Enemy class are taken by the Troll class.</p><p id="764a0e53-8e96-4fd7-9c4f-c7d6655885bb" class="">But we can change the default values by specifying them. and then the code may look something like this</p><pre id="e76c4e13-29a4-40a8-8518-30e25facf7fc" class="code"><code>from enemy import Enemy, Troll
+
+ugly_troll = Troll()
+print(&quot;Ugly troll -{}&quot;.format(ugly_troll))
+
+another_troll = Troll(&quot;Ug&quot;, 18, 1)
+print(&quot;Another troll -{}&quot;.format(another_troll))
+
+brother_to_another = Troll(&quot;Urg&quot;, 23)
+print(&quot;brother_to_anoter -{}&quot;.format(brother_to_another))</code></pre><p id="5237eea5-d2b1-4fef-8513-8e20e848b018" class="">Output</p><pre id="d4a2b263-650c-467e-aec9-70a3a8c78812" class="code"><code>Ugly troll -Name: Enemy, lives: 1, Hit Points: 0
+Another troll -Name: Ug, lives: 1, Hit Points: 18
+brother_to_anoter -Name: Urg, lives: 1, Hit Points: 23</code></pre><p id="25e39e80-e90b-4f16-8253-5e1eb0ab4cfe" class="">the reason we are not getting the error from not initializing the constructor in the troll class is because, we are using the constructor from the class that it is inherting from (Enemy). </p><p id="7cbc3181-1175-452a-8f1d-12e1c71fc1b2" class="">We will make a new constructor for the troll class and will call the attributes of the Enemy class into it.</p><p id="a5ff43f9-0145-4579-901f-0060382bead8" class="">enemy.py</p><pre id="f3ea4e89-b8f0-4be2-923a-c2ed4b2941bd" class="code"><code>class Enemy:
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+
+    def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)
+
+
+class Troll(Enemy):
+
+    def __init__(self, name): # What will happen now is the python will call the init method in our troll class. This means that we will not call  the init method in the superclass Enemy directily
+        Enemy.__init__ (self, name=name, lives=1, hit_points=23)# If we still want to access the attributes from the Enemy&#x27;s init method, we will have to call that here. If we just keep it like this, it will give us an error.</code></pre><p id="ad8bc44c-2592-48de-aa61-a81d605a581f" class="">main.py</p><pre id="80091859-d165-43ef-a1da-8909adb226b3" class="code"><code>from enemy import Enemy, Troll
+
+ugly_troll = Troll(&quot;Ogg&quot;)
+print(&quot;Ugly troll -{}&quot;.format(ugly_troll))
+
+another_troll = Troll(&quot;Ug&quot;)
+print(&quot;Another troll -{}&quot;.format(another_troll))
+
+brother_to_another = Troll(&quot;Urg&quot;)
+print(&quot;brother_to_anoter -{}&quot;.format(brother_to_another))</code></pre><p id="a0d917cf-c41c-4de3-baca-5f8fbe35f059" class="">Output</p><pre id="7a5e5448-fce4-4e64-8a4a-2666e4fd8056" class="code"><code>Ugly troll -Name: Ogg, lives: 1, Hit Points: 23
+Another troll -Name: Ug, lives: 1, Hit Points: 23
+brother_to_anoter -Name: Urg, lives: 1, Hit Points: 23</code></pre><p id="7283ab85-8708-4e99-b5ae-53f75b6b6ff9" class="">In python 3.x there is super() method for the classes to inhreit from multiple classes. And for inheriting the attributes and mehods, using super() mehod is more common</p><p id="f689f50a-2427-41e3-8730-df77de941053" class="">
+</p><p id="76cdcd51-12ef-4596-98f4-49ae3eb16588" class="">enemy.py</p><pre id="d9e99add-75b5-4b47-ac57-6419546ca06b" class="code"><code>class Enemy:
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+
+    def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)
+
+
+class Troll(Enemy):
+
+    def __init__(self, name):
+        #super(Troll, self).__init__(name=name, lives=1, hit_points=23)
+        super().__init__(name=name, lives=1, hit_points=23) 
+        # the two mehods which are shown above are identical and will produce the same results. The second one is better way of writting it.</code></pre><p id="8ad82fb4-fc73-4fde-b4af-f8d4fc90823d" class=""> The code in the <a href="http://main.py">main.py</a> is the same and the output is as shown below</p><pre id="01a46851-5ce2-4e75-a498-9eab43d290d8" class="code"><code>Ugly troll -Name: Ogg, lives: 1, Hit Points: 23
+Another troll -Name: Ug, lives: 1, Hit Points: 23
+brother_to_anoter -Name: Urg, lives: 1, Hit Points: 23</code></pre><p id="8bdb700a-aeaf-40ab-8a2c-3cd77f12b019" class="">sub-classes can have methods of their own the following code will demonstrate that</p><p id="b7568756-7fae-4819-97df-728788047fb2" class="">enemy.py</p><pre id="1bc37fce-6853-497b-8316-19a0fc1fceab" class="code"><code>class Enemy:
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+
+    def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)
+
+
+class Troll(Enemy):
+
+    def __init__(self, name):
+        #super(Troll, self).__init__(name=name, lives=1, hit_points=23)
+        super().__init__(name=name, lives=1, hit_points=23) 
+        # the two mehods which are shown above are identical and will produce the same results. The second one is better way of writting it.
+
+    def grunt(self):
+        print(&quot; I the {0.name} will try to kill you in this game &quot;.format(self))</code></pre><p id="afabf1a4-d3c8-4f6c-a20a-4d9778b13805" class="">main.py</p><pre id="c4eee9bf-69c4-4ec9-87ac-006fdac2c656" class="code"><code>from enemy import Enemy, Troll
+
+ugly_troll = Troll(&quot;Ogg&quot;)
+print(&quot;Ugly troll -{}&quot;.format(ugly_troll))
+
+another_troll = Troll(&quot;Ug&quot;)
+print(&quot;Another troll -{}&quot;.format(another_troll))
+
+brother_to_another = Troll(&quot;Urg&quot;)
+print(&quot;brother_to_anoter -{}&quot;.format(brother_to_another))
+
+ugly_troll.grunt()
+another_troll.grunt()
+brother_to_another.grunt()</code></pre><p id="1d357026-2c61-4c8a-b9b4-ef46d0cf7854" class="">Output</p><pre id="45b436fb-30fb-4937-b3b6-545dc518cd2c" class="code"><code>Ugly troll -Name: Ogg, lives: 1, Hit Points: 23
+Another troll -Name: Ug, lives: 1, Hit Points: 23
+brother_to_anoter -Name: Urg, lives: 1, Hit Points: 23
+ I the Ogg will try to kill you in this game
+ I the Ug will try to kill you in this game
+ I the Urg will try to kill you in this game</code></pre><p id="9b2997e0-d3ce-4f3d-8fa0-040c8fa20f0a" class="">
+</p><p id="b63edcd9-9eb5-4956-80b5-f59bb30a9dbf" class="">
+</p><p id="00b36c6d-fe03-45e9-9729-33abd67d73af" class="">We can directily access the methods in the superclass with the objects of the subclass. The code for the this is shown below. Here we create a new class Vampyre which will also Inherit from the Enemy class</p><p id="45875acb-9873-4469-a1d1-718ff28ee9f1" class="">enemy.py</p><pre id="cffc2e6e-ea48-4665-8808-320e73adf1a7" class="code"><code>class Enemy:
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+        self.alive =True
+
+    def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+            if self.lives&gt;0:
+                print(&quot;{0.name} lost a life&quot;.format(self))
+            else:
+                print(&quot;{0.name} is dead&quot;.format(self))
+                self.alive=False
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)
+
+
+class Troll(Enemy):
+
+    def __init__(self, name):
+        #super(Troll, self).__init__(name=name, lives=1, hit_points=23)
+        super().__init__(name=name, lives=1, hit_points=23) 
+        # the two mehods which are shown above are identical and will produce the same results. The second one is better way of writting it.
+
+    def grunt(self):
+        print(&quot; I the {0.name} will try to kill you in this game &quot;.format(self))
+
+    # def __init__(self, name): # What will happen now is the python will call the init method in our troll class. This means that we will not call  the init method in the superclass Enemy directily
+    #     Enemy.__init__ (self, name=name, lives=1, hit_points=23)# If we still want to access the attributes from the Enemy&#x27;s init method, we will have to call that here. If we just keep it like this, it will give us an error.
+
+class Vampyre(Enemy):
+    def __init__(self, name):
+        super().__init__(name=name, lives=3, hit_points=12)</code></pre><p id="b4c53b06-d096-4392-ad04-e66c956dba42" class="">main.py</p><pre id="42a8eb12-a360-40e8-a2f3-b773f9faf4f8" class="code"><code>from enemy import Enemy, Troll, Vampyre
+
+ugly_troll = Troll(&quot;Ogg&quot;)
+print(&quot;Ugly troll -{}&quot;.format(ugly_troll))
+
+another_troll = Troll(&quot;Ug&quot;)
+print(&quot;Another troll -{}&quot;.format(another_troll))
+
+brother_to_another = Troll(&quot;Urg&quot;)
+print(&quot;brother_to_anoter -{}&quot;.format(brother_to_another))
+
+ugly_troll.grunt()
+another_troll.grunt()
+brother_to_another.grunt()
+
+ugly_troll.take_damage(6)
+another_troll.take_damage(9)
+brother_to_another.take_damage(10)
+
+print() # for separation in the output
+
+vamp1 = Vampyre(&quot;drac&quot;)
+print(vamp1)
+vamp1.take_damage(7)
+
+vamp2 = Vampyre(&quot;drac_minion&quot;)
+print(vamp1)
+vamp1.take_damage(6)
+
+# vamp1 will take damage until his lives are over.
+while vamp1.alive:
+    vamp1.take_damage(1)
+    print(vamp1)
+</code></pre><p id="b72f4e2f-88c7-499e-b8f0-600f4abfa797" class="">Output</p><pre id="8429ff9f-33a0-481c-8240-da1b204a7b0a" class="code"><code>Ugly troll -Name: Ogg, lives: 1, Hit Points: 23
+Another troll -Name: Ug, lives: 1, Hit Points: 23
+brother_to_anoter -Name: Urg, lives: 1, Hit Points: 23
+ I the Ogg will try to kill you in this game
+ I the Ug will try to kill you in this game
+ I the Urg will try to kill you in this game
+I took 6 opints damage and have 17 points left
+I took 9 opints damage and have 14 points left
+I took 10 opints damage and have 13 points left
+
+Name: drac, lives: 3, Hit Points: 12
+I took 7 opints damage and have 5 points left
+Name: drac, lives: 3, Hit Points: 5
+drac lost a life
+I took 1 opints damage and have 4 points left
+Name: drac, lives: 2, Hit Points: 4
+I took 1 opints damage and have 3 points left
+Name: drac, lives: 2, Hit Points: 3
+I took 1 opints damage and have 2 points left
+Name: drac, lives: 2, Hit Points: 2
+I took 1 opints damage and have 1 points left
+Name: drac, lives: 2, Hit Points: 1
+I took 1 opints damage and have 0 points left
+Name: drac, lives: 2, Hit Points: 0
+drac lost a life
+Name: drac, lives: 1, Hit Points: 0
+drac is dead
+Name: drac, lives: 0, Hit Points: 0</code></pre><p id="c140a8fe-45c8-4af5-8677-389f6d5f5bf2" class="">We can actually change the method of the super-class in the sub-class in python. This is not the same as method overriding. The difference between the two is explained in  <a href="General%20Information%20About%20Python%204f8d59ad649b49439996e65ec04a97d1.html">General Information About Python</a> The example of the code is as given in the program below</p><p id="cec9161b-f844-4b95-9690-55334081ca35" class="">enemy.py</p><pre id="74875459-b383-4dde-b5c3-37e939592475" class="code"><code>&quot;&quot;&quot;
+This class will serve as a Superclass for the classes that we will create in main.py file.
+
+This means that all the subclasses will have the attributes and the methods that are metioned here in the below class.
+
+&quot;&quot;&quot;
+# Standard python Import 
+import random
+
+class Enemy:
+
+    def __init__(self, name=&quot;Enemy&quot;, hit_points=0, lives=1):
+        self.name = name
+        self.hit_points = hit_points
+        self.lives = lives
+        self.alive =True
+
+    def take_damage(self, damage):
+        remaining_points = self.hit_points-damage
+        if remaining_points&gt;=0:
+            self.hit_points = remaining_points
+            print(&quot;I took {} opints damage and have {} points left&quot;.format(damage, self.hit_points))
+        else:
+            self.lives -= 1
+            if self.lives&gt;0:
+                print(&quot;{0.name} lost a life&quot;.format(self))
+            else:
+                print(&quot;{0.name} is dead&quot;.format(self))
+                self.alive=False
+
+    def __str__(self):
+        return &quot;Name: {0.name}, lives: {0.lives}, Hit Points: {0.hit_points}&quot;.format(self)
+
+
+class Troll(Enemy):
+
+    def __init__(self, name):
+        #super(Troll, self).__init__(name=name, lives=1, hit_points=23)
+        super().__init__(name=name, lives=1, hit_points=23) 
+        # the two mehods which are shown above are identical and will produce the same results. The second one is better way of writting it.
+
+    def grunt(self):
+        print(&quot; I the {0.name} will try to kill you in this game &quot;.format(self))
+
+
+
+    
+
+    # def __init__(self, name): # What will happen now is the python will call the init method in our troll class. This means that we will not call  the init method in the superclass Enemy directily
+    #     Enemy.__init__ (self, name=name, lives=1, hit_points=23)# If we still want to access the attributes from the Enemy&#x27;s init method, we will have to call that here. If we just keep it like this, it will give us an error.
+
+class Vampyre(Enemy):
+    def __init__(self, name):
+        super().__init__(name=name, lives=3, hit_points=12)
+
+    def _dodges(self):
+        if random.randint(1,3) == 3:
+            print(&quot;*** {0.name} dodged***&quot;.format(self))
+            return True
+        else:
+            return False
+
+    
+
+    def take_damage(self, damage):
+       if not self._dodges():
+        super().take_damage(damage=damage)</code></pre><p id="7154f461-5115-4fe3-b6bc-1003bf9469a8" class="">main.py</p><pre id="cc2ca97d-ab24-4984-90fd-97ef567a6154" class="code"><code>from enemy import Enemy, Troll, Vampyre
+
+ugly_troll = Troll(&quot;Ogg&quot;)
+print(&quot;Ugly troll -{}&quot;.format(ugly_troll))
+
+another_troll = Troll(&quot;Ug&quot;)
+print(&quot;Another troll -{}&quot;.format(another_troll))
+
+brother_to_another = Troll(&quot;Urg&quot;)
+print(&quot;brother_to_anoter -{}&quot;.format(brother_to_another))
+
+ugly_troll.grunt()
+another_troll.grunt()
+brother_to_another.grunt()
+
+ugly_troll.take_damage(6)
+another_troll.take_damage(9)
+brother_to_another.take_damage(10)
+
+print() # for separation in the output
+
+vamp1 = Vampyre(&quot;drac&quot;)
+print(vamp1)
+vamp1.take_damage(7)
+
+vamp2 = Vampyre(&quot;drac_minion&quot;)
+print(vamp1)
+vamp1.take_damage(6)
+
+# vamp1 will take damage until his lives are over.
+while vamp1.alive:
+    vamp1.take_damage(1)</code></pre><p id="e071c4da-5bdb-495b-86f0-01c83cc49e4a" class=""> As can be seen from the code in <a href="http://enemy.py">enemy.py</a> the take_damage method was repurposed for the Vampyre class. Another important thing to note here is that all the code written after  the super().take_damage(damage=damage)  method does not work. So, whatever the chages that we have to make to the original method are to be made before the original method is called.</p><h2 id="8bde2bd2-cdc1-406e-83b1-eb78f4e9d0de" class="">What is Polymorphism in python</h2><p id="95e09d93-4fbc-4834-a05e-d6bf0e571c3d" class="">Polymorphism means that variable can take different datatypes such as strings, integers etc. depending upon how it is required to be processed and depending upon how it was used in the program. A good example of this is printing an integer. An integer will act like an integer when it is used in some calculations. But, it acts like a string when it is printed. This is possible because, all objects in python inherit some methods when they are created. Like .__str__() method which returns a string of an object. That is why we can print any object in python. The code example of the polymorphism is given below.</p><p id="cb565b8f-78b3-4d86-a531-3ededa630649" class=""><span style="border-bottom:0.05em solid"><em><strong>It can also be said that the polymorphism is an example of “is a” relationship in python. Relating to the example earlier, it can be said that the troll is an enemy and a vampire is an enemy. This is polymorphism because all of those classes are inherited from the main class of an enemy and all of them can also be said to be the different form of the same class enemy.</strong></em></span></p><pre id="90b00a15-3d89-4f69-b7d4-c8c19d3cc9a3" class="code"><code>&quot;&quot;&quot; 
+This class will help as an example in the explanation of polymorphism in python
+
+&quot;&quot;&quot;
+
+class Duck(object):
+    &quot;&quot;&quot;
+    We do not need to add the init method in this class
+    &quot;&quot;&quot;
+    def walk(self):
+        print(&quot;The duck walks&quot;)
+
+    def swim(self):
+        print(&quot;The duck can swim&quot;)
+
+    def quack(self):
+        print(&quot;The duck can also quack&quot;)
+
+# we will create another class called penguine which will have all the same properties as the class Duck
+
+class Penguine(object):
+    def walk(self):
+        print(&quot;Penguine can also walk&quot;)
+
+    def swim(self):
+        print(&quot;Penguine can also swim even in colder waters&quot;)
+
+    def quack(self):
+        print(&quot;Penguine cannot cannot quack but it can dance&quot;)
+
+
+
+
+# create a function to check the class duck
+def test_duck(duck):
+    duck.walk()
+    duck.swim()
+    duck.quack()
+
+if __name__ == &#x27;__main__&#x27;:
+    donald = Duck()
+    test_duck(donald)
+
+    print() # to maintain separation between two tests
+
+    # we can use our test_duck function to test the class Penguine
+    Pico = Penguine()
+    test_duck(Pico)
+
+
+# What does all of this mean?
+&quot;&quot;&quot;
+This is a major difference between a dynamically typed language like Python and a statically typed language like Java and C++- In statically typed language, 
+you need to define/ declare a type of a variable when you create it. That is not the case with python. This is consequently also a good example of polymorphism in python.
+
+&quot;&quot;&quot;</code></pre><h2 id="ab453fe0-2295-400e-baa4-76debe35236b" class=""></h2></div></article></body></html>

@@ -1,0 +1,882 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tuples</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b29295ef-9099-4314-8913-ef804d3cb51b" class="page sans"><header><h1 class="page-title">Tuples</h1></header><div class="page-body"><p id="e52429d1-5b16-4c04-a57b-6fffae464742" class="">Tuples are immutable lists. But this does not mean that we cannot perform any operations on the tuples.</p><p id="b8088ccc-8722-47ec-a15f-964c20d3d9c4" class="">The list of operations that can be performed on the tuples are listed in the python documentaion link below.
+The tuples are denoted by () brackets.</p><p id="87c168d2-5da9-4ee6-a52e-20f9e361faab" class=""><a href="https://docs.python.org/3/library/stdtypes.html#common-sequence-operations">https://docs.python.org/3/library/stdtypes.html#common-sequence-operations</a></p><pre id="7e062847-ef32-4b54-9e62-fcd50710bf05" class="code"><code>t = &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;
+print(t)</code></pre><p id="ce678362-f1ab-4483-884c-dfef560918ff" class=""><strong>output</strong></p><pre id="1d675c23-9782-40c9-ac38-83cbcfdc8d9b" class="code"><code>(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</code></pre><p id="fd357eea-118a-4583-8a60-b8bff1bc8643" class="">Notice that the python added the rackets in the output. But it is a good practice to add these brackets yourself in the code. Just to remove one additional thing to be remembered. </p><p id="5684197a-db09-44e1-9b3e-796d1ea62aa6" class="">A single tuple can have values from multiple datatypes. The following has integer and string.  </p><pre id="5e50f6c7-9809-4bd4-a0e2-5ec2d37785ad" class="code"><code>print((&quot;learning python&quot;, 2022))</code></pre><p id="6cd0ac06-7dd5-405b-82e6-ff3f005b2957" class=""><strong>output:</strong></p><pre id="6d14fe4f-e038-419c-b172-fd820b03d580" class="code"><code>(&#x27;learning python&#x27;, 2022)</code></pre><p id="27deeff8-b3bb-44f1-a1f6-69e47b8fa9a5" class="">Tuples are indexed same as a list. With the squared brackets.</p><pre id="efb6fa19-3e6a-4cea-b721-3daab5ee62fd" class="code"><code>welcome = &quot;Welcome to my nightmare&quot;, &quot;Alice Cooper&quot;, 1975
+bad = &quot;Bad Company&quot;, &quot;Bad Company&quot;, 1974
+budgie = &quot;Nightflight&quot;, &quot;Budgie&quot;, 1984
+imedia = &quot;More mayham&quot;, &quot;Emilda may&quot;, 1981
+metallica = &quot;Ride the lightening&quot;, &quot;Metallica&quot;, 1984
+
+print(metallica)
+print(metallica[0])
+print(metallica[1])
+print(metallica[2])</code></pre><p id="f79cf1bb-183b-4a17-8e7d-fc94cca6758a" class=""><strong>Output:</strong></p><pre id="593badd7-b908-4da9-a086-70342e2e2811" class="code"><code>(&#x27;Ride the lightening&#x27;, &#x27;Metallica&#x27;, 1984)
+Ride the lightening
+Metallica
+1984</code></pre><p id="41a5a77a-6144-4d21-9e2b-e6cee5d3fcb8" class="">Since tuples are immutable they do not have overhead required to make changes. This saves memory. So if we have millions of data, tuples may save a lot of data.</p><p id="4959c1c1-c417-4f2f-863d-45cd27c12938" class=""><strong>The following code just shows what unpacking a sequence type means</strong></p><pre id="464d07a3-8bee-4d80-924d-9f11b283cab3" class="code"><code>#We can assign multiple values to the variables in the python. 
+
+x,y,z = 1,4,6 # these values are actually tuples.
+
+# Following code is what is referred to as unpacking a tuple
+print(x)
+print(y)
+print(z)
+
+
+# Unpacking a tuple
+
+data = 1,4,6 # this is a tuple
+x,y,z = data # The values on the left may look like a tuple but they are not a tuple. They are variables. And these variables get their values from the tupel data. 
+# we can never have tuple on the left side of &#x27;=&#x27; because they are immutable. 
+print(x)
+print(y)
+print(z)</code></pre><p id="d155d645-5233-4e5e-838f-9d3118807f43" class=""><em><span style="border-bottom:0.05em solid"><strong>Ideally we can unpack a list as well. </strong></span></em></p><p id="7030d4e9-758e-44ae-ae51-622dd45121a4" class=""><strong>The second advantage of tuple is that, since they are immutable, we can always know how many items are there to unpack. This may not always be the case with the list and other mutable sequence types. </strong></p><p id="5dd0fb40-114d-4fb8-a88d-a9678e37ea73" class="">Here is another example of unpacking tuple</p><pre id="df266a9b-e76c-4972-bbb5-c5c9c8db91f4" class="code"><code>&quot;&quot;&quot;Unpacking a tuple can be very helpful with the enumerate. As shown in the example below.&quot;&quot;&quot;
+
+for idx, char in enumerate(&quot;abcdefghi&quot;):
+    t = idx, char # Here we are creating a tuple. Now imagine appending this tuple to a empty list defined prior. 
+    print(t)
+    index = t[0]
+    character = t[1]
+    print(&quot;Character&quot;, character)
+    print(&quot;Index&quot;,index)</code></pre><p id="03724e72-ffcd-4c91-9524-f5cb0701465e" class=""><strong>Output:</strong></p><pre id="364419a0-be6f-4b57-b3fb-8f36fb1eeaa6" class="code"><code>(0, &#x27;a&#x27;)
+Character a
+Index 0
+(1, &#x27;b&#x27;)
+Character b
+Index 1
+(2, &#x27;c&#x27;)
+Character c
+Index 2
+(3, &#x27;d&#x27;)
+Character d
+Index 3
+(4, &#x27;e&#x27;)
+Character e
+Index 4
+(5, &#x27;f&#x27;)
+Character f
+Index 5
+(6, &#x27;g&#x27;)
+Character g
+Index 6
+(7, &#x27;h&#x27;)
+Character h
+Index 7
+(8, &#x27;i&#x27;)
+Character i
+Index 8</code></pre><p id="6246f873-5e13-4fe2-8629-8c7c15307030" class=""><span style="border-bottom:0.05em solid"><strong>Here is a bit more on unpacking a tuple</strong></span></p><pre id="6a68d690-31c7-4197-b7de-f0cb221e1ae7" class="code"><code>&quot;&quot;&quot;We can use the unpacking of the tuple to make the program a bit more simpler.&quot;&quot;&quot;
+table = (&quot;Coffee&quot;,200,100,75,34)
+print(table[1]*table[2]) #Calculating the area of the table in an unreadable code.
+
+# We can do the same thing by unpacking the tuple.
+table_type, length, width, height, price = table
+print(&quot;Area of the table is: &quot;, length*height)</code></pre><p id="67ca0303-9447-4aeb-923d-a8278f3df275" class=""><strong>Output: </strong></p><pre id="88dda169-ffe5-4c0e-9bb6-9dda08fe4fa5" class="code"><code>20000
+Area of the table is:  20000</code></pre><p id="25c8beab-2d39-4ebb-8949-a93db34f26b5" class="">this is how unpacking will help in making the program more readable. </p><p id="043d6617-537a-4e98-ad9c-fc8c22f5c203" class=""><strong>The following code shows the nested list. It is a list containing the tuples and it is shown how we can unpack such lists.</strong></p><pre id="887d0411-ffce-4196-8966-764bd659e9c2" class="code"><code>albums = [(&quot;Welcome to my nightmare&quot;, &quot;Alice Cooper&quot;, 1975),
+(&quot;Bad Company&quot;, &quot;Bad Company&quot;, 1974),
+ (&quot;Nightflight&quot;, &quot;Budgie&quot;, 1984),
+ (&quot;More mayham&quot;, &quot;Emilda may&quot;, 1981),
+(&quot;Ride the lightening&quot;, &quot;Metallica&quot;, 1984)]
+
+item_1 = albums[0]
+item_2 = albums[1]
+item_3 = albums[2]
+item_4 = albums[3]
+item_5 = albums[4]
+
+
+name= [item_1[0], item_2[0],item_3[0],item_4[0],item_5[0]]
+album = [item_1[1], item_2[1],item_3[1],item_4[1],item_5[1]]
+year = [item_1[2], item_2[2],item_3[2],item_4[2],item_5[2]]
+
+for i in range(5):
+    print(&quot;my discography:&quot;)
+    print(&quot;band: {}, album: {}, year: {}&quot;.format(name[i],album[i],year[i]))
+
+# The code below also gives the same output. But it saves us th effort of unpacking the individual tuples. 
+# It is a more efficient way of writing the same code. 
+for a, n, y in albums:
+    print(&quot;band: {}, album: {}, year: {}&quot;.format(n,a,y))</code></pre><p id="0aa31886-e6d8-43d8-8432-747e14508388" class=""><strong>output:</strong></p><pre id="d0a014f3-e67a-4a73-a3ed-7e11bf162eec" class="code"><code>my discography:
+band: Bad Company, album: Bad Company, year: 1974
+my discography:
+band: Nightflight, album: Budgie, year: 1984
+my discography:
+band: More mayham, album: Emilda may, year: 1981
+my discography:
+band: Ride the lightening, album: Metallica, year: 1984
+band: Alice Cooper, album: Welcome to my nightmare, year: 1975
+band: Bad Company, album: Bad Company, year: 1974
+band: Budgie, album: Nightflight, year: 1984
+band: Emilda may, album: More mayham, year: 1981
+band: Metallica, album: Ride the lightening, year: 1984</code></pre><p id="eeeb3c0b-3633-476c-98c8-4426e31c6a86" class="">Notice that we can unpack the tuples in two ways and one way is essentially more efficient than the other. </p><p id="850c53b9-7b23-45c5-bf36-c8126aa370f8" class=""><strong>now we will add the songs to our albums.</strong></p><p id="9b647243-8c04-47b4-b976-331cf5608bad" class=""><strong>The important choice at the time of using a nested dataset is when to use the tuples and the lists. It depends on the following: </strong></p><ol type="1" id="6a221ad7-2259-48b2-acad-ff884ee82fac" class="numbered-list" start="1"><li>Are we planning to modify the dataset once it is written in the program</li></ol><ol type="1" id="5d568694-5755-4a69-9694-527732e787d6" class="numbered-list" start="2"><li>what type of data are we planning to store? Heterogenous or homogenous data?</li></ol><ol type="1" id="36864aa7-ab0d-4f70-9302-cf84c170bf11" class="numbered-list" start="3"><li>How many levels of nesting are we planning to use? </li></ol><p id="84268fbe-a1a0-4a2c-9a05-d0ea275fa62b" class=""><strong>The following code is a better example of nested item indexing</strong></p><pre id="da3ee270-a8ed-42da-9336-2ec4aa057c94" class="code"><code>&quot;&quot;&quot;The plan is to add songs in the albums. We are going to use the data from the resources section of the course. 
+This is a lists nested in the tuples.&quot;&quot;&quot;
+
+albums = [
+    (&quot;Welcome to my Nightmare&quot;, &quot;Alice Cooper&quot;, 1975,
+     [
+         (1, &quot;Welcome to my Nightmare&quot;),
+         (2, &quot;Devil&#x27;s Food&quot;),
+         (3, &quot;The Black Widow&quot;),
+         (4, &quot;Some Folks&quot;),
+         (5, &quot;Only Women Bleed&quot;),
+     ]
+     ),
+    (&quot;Bad Company&quot;, &quot;Bad Company&quot;, 1974,
+     [
+         (1, &quot;Can&#x27;t Get Enough&quot;),
+         (2, &quot;Rock Steady&quot;),
+         (3, &quot;Ready for Love&quot;),
+         (4, &quot;Don&#x27;t Let Me Down&quot;),
+         (5, &quot;Bad Company&quot;),
+         (6, &quot;The Way I Choose&quot;),
+         (7, &quot;Movin&#x27; On&quot;),
+         (8, &quot;Seagull&quot;),
+     ]
+     ),
+    (&quot;Nightflight&quot;, &quot;Budgie&quot;, 1981,
+     [
+         (1, &quot;I Turned to Stone&quot;),
+         (2, &quot;Keeping a Rendezvous&quot;),
+         (3, &quot;Reaper of the Glory&quot;),
+         (4, &quot;She Used Me Up&quot;),
+     ]
+     ),
+    (&quot;More Mayhem&quot;, &quot;Imelda May&quot;, 2011,
+     [
+         (1, &quot;Pulling the Rug&quot;),
+         (2, &quot;Psycho&quot;),
+         (3, &quot;Mayhem&quot;),
+         (4, &quot;Kentish Town Waltz&quot;),
+     ]
+     ),
+]
+
+# lets seperate the items from each of the lists.
+for artist, albulm, year, songs in albums:
+    print(&quot;Album: {}, Artist: {}, Year: {}, Songs in album: {}&quot;. format(artist, albulm, year, songs))
+
+#Now, get the third album Budgie, take out the songs as a list and isolate the title of the first song. 
+album = albums[2]
+songs = album[3]
+for sr_no, song in songs:
+    if sr_no == 1:
+         print(sr_no)
+         print(song)</code></pre><p id="216fc7fe-524f-4471-b721-e03a2b2c4028" class=""><strong>Output:</strong></p><pre id="8b63d365-00a3-4540-be45-f7c657a4bc2b" class="code"><code>Album: Welcome to my Nightmare, Artist: Alice Cooper, Year: 1975, Songs in album: [(1, &#x27;Welcome to my Nightmare&#x27;), (2, &quot;Devil&#x27;s Food&quot;), (3, &#x27;The Black Widow&#x27;), (4, &#x27;Some Folks&#x27;), (5, &#x27;Only Women Bleed&#x27;)]
+Album: Bad Company, Artist: Bad Company, Year: 1974, Songs in album: [(1, &quot;Can&#x27;t Get Enough&quot;), (2, &#x27;Rock Steady&#x27;), (3, &#x27;Ready for Love&#x27;), (4, &quot;Don&#x27;t Let Me Down&quot;), (5, &#x27;Bad Company&#x27;), (6, &#x27;The Way I Choose&#x27;), (7, &quot;Movin&#x27; On&quot;), (8, &#x27;Seagull&#x27;)]
+Album: Nightflight, Artist: Budgie, Year: 1981, Songs in album: [(1, &#x27;I Turned to Stone&#x27;), (2, &#x27;Keeping a Rendezvous&#x27;), (3, &#x27;Reaper of the Glory&#x27;), (4, &#x27;She Used Me Up&#x27;)]
+Album: More Mayhem, Artist: Imelda May, Year: 2011, Songs in album: [(1, &#x27;Pulling the Rug&#x27;), (2, &#x27;Psycho&#x27;), (3, &#x27;Mayhem&#x27;), (4, &#x27;Kentish Town Waltz&#x27;)]
+1
+I Turned to Stone</code></pre><p id="33872d91-a127-407e-bbb1-8017c751d93b" class="">
+</p><p id="d6c6fbd4-9520-4d74-90f8-d59e062ab5dd" class=""><strong>In the code above, we have done things in very elaborate way. The better and the faster approach of doing the same thing is as shown in the code below. </strong></p><pre id="649a5ae1-c3be-48c5-a6e9-a006143c7873" class="code"><code>&quot;&quot;&quot;This progeram will also isolate the songs like the code in the more_on_nested_datatypes.py. But it will be much more consize than that code.&quot;&quot;&quot;
+albums = [
+    (&quot;Welcome to my Nightmare&quot;, &quot;Alice Cooper&quot;, 1975,
+     [
+         (1, &quot;Welcome to my Nightmare&quot;),
+         (2, &quot;Devil&#x27;s Food&quot;),
+         (3, &quot;The Black Widow&quot;),
+         (4, &quot;Some Folks&quot;),
+         (5, &quot;Only Women Bleed&quot;),
+     ]
+     ),
+    (&quot;Bad Company&quot;, &quot;Bad Company&quot;, 1974,
+     [
+         (1, &quot;Can&#x27;t Get Enough&quot;),
+         (2, &quot;Rock Steady&quot;),
+         (3, &quot;Ready for Love&quot;),
+         (4, &quot;Don&#x27;t Let Me Down&quot;),
+         (5, &quot;Bad Company&quot;),
+         (6, &quot;The Way I Choose&quot;),
+         (7, &quot;Movin&#x27; On&quot;),
+         (8, &quot;Seagull&quot;),
+     ]
+     ),
+    (&quot;Nightflight&quot;, &quot;Budgie&quot;, 1981,
+     [
+         (1, &quot;I Turned to Stone&quot;),
+         (2, &quot;Keeping a Rendezvous&quot;),
+         (3, &quot;Reaper of the Glory&quot;),
+         (4, &quot;She Used Me Up&quot;),
+     ]
+     ),
+    (&quot;More Mayhem&quot;, &quot;Imelda May&quot;, 2011,
+     [
+         (1, &quot;Pulling the Rug&quot;),
+         (2, &quot;Psycho&quot;),
+         (3, &quot;Mayhem&quot;),
+         (4, &quot;Kentish Town Waltz&quot;),
+     ]
+     ),
+]
+
+# Task is to get the first song in the third item of the tuple. 
+
+song = albums[2][3][0][1] # Notice how this is similar to the way we accessed data in the EDS code for the assignment.
+
+print(song)</code></pre><p id="0fa5961f-9b3c-4f0d-9095-71ff8d01d89e" class=""><strong>Output:</strong></p><pre id="83cd5c8f-de0d-4a46-a648-872da57dab66" class="code"><code>I Turned to Stone</code></pre><p id="8c5f212a-002f-458f-b5e8-b8495dfa2799" class="">
+</p><p id="da241582-8814-49a3-bf3e-1c3ec4911cb0" class=""><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong>The important thing in the tuple is just knowing how to index into it and get the values or the datatypes that you want (since tuples are immutable, there is no question of adding or removing items from them). But, still if there is any doubt, please refer the documentation below.</strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></p><figure id="f5f0874c-ed9f-4ec3-9300-c57615a1c2df"><a href="https://docs.python.org/3/tutorial/datastructures.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">5. Data Structures - Python 3.11.0 documentation</div><div class="bookmark-description">This chapter describes some things you&#x27;ve learned about already in more detail, and adds some new things as well. The list data type has some more methods. Here are all of the methods of list objects: Extend the list by appending all the items from the iterable. Equivalent to .</div></div><div class="bookmark-href"><img src="https://docs.python.org/favicon.ico" class="icon bookmark-icon"/>https://docs.python.org/3/tutorial/datastructures.html</div></div></a></figure></div></article></body></html>

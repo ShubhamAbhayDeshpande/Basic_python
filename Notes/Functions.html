@@ -1,0 +1,777 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Functions</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bfe59c6c-e04e-4a54-8fa1-6e2ba580d07f" class="page sans"><header><h1 class="page-title">Functions</h1></header><div class="page-body"><h2 id="aca0c6e8-bf9a-4454-90cc-ff6e3c1423fd" class="">What are arguments and parameters</h2><h3 id="efb30516-d373-4678-8a91-fcec8bcef326" class="">All the functions that are written in this section are attached in the file at the bottom of this page. (To make the documentation less complicated) </h3><p id="0047c896-456c-4c2b-88fb-35dc4761fe47" class="">
+</p><p id="3f5bfa4d-4c19-4b71-826b-cc1f9d134e1e" class="">each function has some parameters. And the values during the execution that will be used by these parameters are called arguments. </p><p id="bda5f2a8-8eb1-499c-9458-fe0fdc7db516" class="">Sometimes it is very common to use the two words in place of one another. </p><p id="fe9299e2-49c1-4c04-b5fc-2d559c9897a5" class="">If a function defines two parameters, we pass two arguments to these arguments to the functions. </p><p id="b40aff3a-2c08-4e5b-b9e7-a7c9f4e84494" class="">following functions are written as an example</p><p id="5f10d893-5989-40c5-a038-ad4eab9a2db3" class="">
+</p><p id="aa027864-2f61-41ec-92af-c2d69851d936" class="">return acts like a break function when used inside a loop.</p><p id="8d4bdfdf-795d-46c9-9dde-e04f051c06c3" class=""><span style="border-bottom:0.05em solid"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>What are docstrings????</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></span></p><p id="22645af0-2ff6-478d-8789-8d27b5f88f80" class="">It is important to have documentation for your function. This can be included in your function using ‘Docstrings’. Docstrings describe how the functions are written and what it is a function exactly does. </p><p id="c64a766c-0e66-466f-b76a-949f407d61ee" class="">Each company or a programmer may have their separate method of writing a docstring. This method must be followed at all times for consistency. </p><p id="0a97475d-9404-4213-91da-4d2d3c245449" class=""><span style="border-bottom:0.05em solid"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>What are annotations and type hints???</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></span></p><p id="f9018cc8-b606-435a-b536-80a1cb86bf2b" class="">We use the annotations and the type hints to denote what kind of data type is the function input argument and what kind of datatype is the function output. Examples of these are shown in the fibonacci function in the code. </p><p id="42b62f30-b29d-41cc-8753-ae26f106f43e" class="">If we are not using the function annotations then docstring must mention what kind of data type is used by the input argument and the return type in the function. But in general it is made more clearer by the use of the annotations and type hints. </p><p id="a71db03f-2e15-40b5-9e3e-48fb69128028" class="">If the input argument accepts more than one type of datatype then refer to the documentation for the annotation. </p><p id="5fbf8d7d-dc4a-4b48-bc92-b12beb541b9e" class="">But, again it is just a convention. It is not mandatory to use them. They are good to have but not a must have. </p><p id="0a72908e-29a0-4568-950b-ab2251f9ff7c" class="">The link for the documentation is attached below</p><p id="4e665d88-93f2-427b-a6bb-6fcdebf376b6" class="">  </p><figure id="7b4bff24-3168-4301-9c31-bcf9ba843051"><a href="https://peps.python.org/pep-3107/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">PEP 3107 - Function Annotations</div><div class="bookmark-description">This PEP introduces a syntax for adding arbitrary metadata annotations to Python functions [1]. Because Python&#x27;s 2.x series lacks a standard way of annotating a function&#x27;s parameters and return values, a variety of tools and libraries have appeared to fill this gap.</div></div><div class="bookmark-href"><img src="https://peps.python.org/_static/py.png" class="icon bookmark-icon"/>https://peps.python.org/pep-3107/</div></div></a></figure><p id="33950fbb-ad63-40ae-9dc6-829a495a0be2" class=""> </p><p id="8009b559-626e-446a-be94-b0b581aeac52" class=""><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">How to define the functions that can take either 0 or more arguments……….</span></span></span></span></span></p><p id="22a48d58-27bb-47e8-91fe-847f0e982a52" class="">the way to do this is by using the *args for the function. This is demonstrated in the code written below. </p><pre id="519566cb-226e-4ce0-82e5-53a5567d7b6d" class="code"><code></code></pre><p id="5f1253a2-9008-4879-920e-559b00b12d5d" class="">
+</p><p id="c0482f28-7378-4245-bbc5-b9fc34847708" class=""><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong>The  following is the official documentation. Please refer to this in case of doubt</strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></strong></span></em></p><figure id="155d4396-a7a2-47e9-866d-85d9a7008a31"><a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">4. More Control Flow Tools - Python 3.11.0 documentation</div><div class="bookmark-description">Besides the statement just introduced, Python uses the usual flow control statements known from other languages, with some twists. There can be zero or more parts, and the part is optional. The keyword &#x27;&#x27; is short for &#x27;else if&#x27;, and is useful to avoid excessive indentation. An ... ... ...</div></div><div class="bookmark-href"><img src="https://docs.python.org/favicon.ico" class="icon bookmark-icon"/>https://docs.python.org/3/tutorial/controlflow.html#defining-functions</div></div></a></figure><p id="9d9caee4-686e-41a0-94b6-f8675545703d" class="">
+</p><h2 id="3e62f163-5026-4f9f-9a73-03bcf0da8e9a" class="">Function as a first-class citizen in python</h2><p id="ca2a335c-b461-4722-8809-8abaa981601c" class="">The functions in python can be treated as a first class citizens. This means that they can be assigned to  a variable, can be passed  as an argument to other functions or can even be returned as an argument from other functions. The following code will show how this can be done.</p><p id="fbab48e1-c8bd-49da-a480-ac298bcd37ef" class="">
+</p><p id="2b7bdf70-903c-4ca1-b887-1faeccf7b9b2" class=""><em><span style="border-bottom:0.05em solid"><strong><em><span style="border-bottom:0.05em solid"><strong> Always remember that adding the parenthesis after function name will try to execute that function. </strong></span></em></strong></span></em></p><pre id="eea2c7e0-77b1-4805-b273-7edd7113f0a2" class="code"><code>def squared(x):
+    return x*x
+
+f = squared # When there are no brackets after a function this means that we want to 
+# assign the function to the variable. 
+
+print(square)
+print(f(5))
+
+# The above print statement will show that the f is stored at the same memory location.
+# Using map() in python is a good example of function passed as an argument.
+
+map(func_name, list) # is the systax of the map()
+
+# we can even return a fuction from a function.
+# logger() is an example of a function that will return a function.
+
+# lets take a simple example 
+def outer(msg1):
+    def inner(msg2);
+       print({0} {1}.format(msg1, msg2))
+    return inner()
+
+
+var = outer(&#x27;shubham&#x27;)
+final = var(&#x27;deshpande&#x27;)
+</code></pre><p id="7232cdc5-a38a-4429-8bbf-cda66a96db28" class="">Watch the videos of corey schafer on youtube on topics of first class citizens and closures in python.</p><p id="8af54b72-5376-46d6-856e-e08f06e63a81" class="">
+</p><p id="5b29dba4-e560-4e24-bc14-5f069b2700b3" class="">In simple terms the closure is the process when the inner function will still have access to the variables of the outer function even after the outer function has been executed.</p><p id="d4e69d3f-e07a-4b44-8749-39dbba017509" class="">When the functions contain parameters, it gets interesting.</p><p id="301d1f45-745c-49e6-9cc3-cb9b8b612070" class="">The above logic will also apply to the arguments of the outer function.</p><p id="4546bae6-96d4-4859-9057-2d3e945aa0f6" class="">So closure will close over all the free variables that exists in its local context.</p><h2 id="edf903fb-c684-4909-a089-11a64c256bcd" class="">What are decorators for a function?</h2><p id="1a0e77e7-de18-4dfd-a9a9-7d6acf6e8e67" class="">A decorator is a function that will take some other function as an argument, perform some operations and return some other function or the same function and all of this without changing any operability or structure of the function it accepted as an argument.</p><p id="0f80343c-ee59-42ff-bd02-ae86c987529a" class="">
+</p><p id="112cd2e0-d8fd-4aa9-8b7c-87cadfb4271f" class="">the following code gives an example of a wrapper function.</p><pre id="ad888463-f66b-415e-b241-fd11cb913497" class="code"><code>&quot;&quot;&quot;
+This program will show how the wrapper functions are executed with the &#x27;@&#x27; symbol and what does
+that mean.
+
+&quot;&quot;&quot;
+
+
+def outer_function(original_func):
+    def inner_function(*args, **kwargs):
+        print(&#x27;the outer and inner functions are executed.&#x27;)
+        return original_func(*args, **kwargs)
+    return inner_function
+# when th outer_function will be executed it will not show any value as the return 
+# for the outer function is inner_function that is not executed. 
+# The output will be visible only after the inner_function() is executed which will
+# in turn execute the original_function() with added arguments *args and **kwargs.
+
+# this will define the function wrapper
+
+@outer_function
+def display():
+    print(&#x27;display function passed as an argument to outer_function is executed.&#x27;)
+
+
+@outer_function
+def second_func(name, age):
+    &quot;&quot;&quot;
+    This function will take two arguments and print those two arguments as name and age.
+    :param name: my name
+    :param age: my age
+    :return: Nothing
+    &quot;&quot;&quot;
+    print(f&quot;My name is {name} and I am {age} years old.&quot;)
+
+# This is same as saying that outer_function(display). and then when the display function is
+# executed, it will execute the inner_function and this will also execute the outer function.
+# The above syntax is exactly the same as display = outer_function(display)
+# Now the question is what if our program has more than one original function and it takes more than
+# one keyword argument? In this case we use *args or **kwargs.
+
+
+display()
+second_func(&#x27;shubham&#x27;, 26)</code></pre><p id="aa458828-3d71-488a-91bb-490664b604d9" class=""> The following is the output for the code above. </p><pre id="3cb610bf-da92-4908-8b38-aaa7f6124723" class="code"><code>the outer and inner functions are executed.
+display function passed as an argument to outer_function is executed.
+the outer and inner functions are executed.
+My name is shubham and I am 26 years old.</code></pre><p id="c9fff0ef-5146-41d4-b5d9-7073d468ea0b" class="">Similar to the functions, decorators can also be used with classes. The following code shows an example of the same.</p><pre id="6225ef51-87f8-4ca6-83a9-8b0a4fc8bc5e" class="code"><code>class decorator_class(object):
+    def __init__(self, original_function):
+        self.original_function = original_function
+        # What this will do, is that this will pass the original function to our class similar to
+        # how it was passed to a function.
+
+    def __call__(self, *args, **kwargs):
+        print(&#x27;call method was used to add functionality to the original function&#x27;)
+        return self.original_function(*args, **kwargs)
+
+
+@decorator_class
+def display():
+    print(&#x27;display function passed as an argument to decorator class.&#x27;)
+
+
+@decorator_class
+def second_func(name, age):
+    &quot;&quot;&quot;
+    This function will take two arguments and print those two arguments as name and age.
+    :param name: my name
+    :param age: my age
+    :return: Nothing
+    &quot;&quot;&quot;
+    print(f&quot;My name is {name} and I am {age} years old.&quot;)
+
+display()
+second_func(&#x27;shubham&#x27;, 26)</code></pre><p id="be4c6b37-fbdb-42d1-8253-2d8c751f82f2" class="">The output of the code is </p><pre id="b9ccccc5-c5f0-448d-be04-c3d655c9f7ba" class="code"><code>call method was used to add functionality to the original function
+display function passed as an argument to decorator class.
+call method was used to add functionality to the original function
+My name is shubham and I am 26 years old.</code></pre></div></article></body></html>
